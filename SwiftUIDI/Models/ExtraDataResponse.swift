@@ -8,12 +8,12 @@
 import Foundation
 
 struct ExtraDataResponse: Codable {
-    let sample: [InfoItem]?
+	let sample: [InfoItem]?
 
-    struct InfoItem: Codable {
-        let id: String?
-        let story: String?
-        let colour: String?
-        let date: Date?
-    }
+	struct InfoItem: Codable {
+		let id: String?
+		let story: String?
+		let colour: String?
+		let date: Date?
+	}
 }

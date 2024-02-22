@@ -8,11 +8,11 @@
 import Foundation
 
 struct SampleImagesResponse: Codable {
-    let sample: [ImageItem]?
-    
-    struct ImageItem: Codable {
-        let description: String?
-        let imageUrl: String?
-        let id: String?
-    }
+	let sample: [ImageItem]?
+
+	struct ImageItem: Codable {
+		let description: String?
+		let imageUrl: String?
+		let id: String?
+	}
 }

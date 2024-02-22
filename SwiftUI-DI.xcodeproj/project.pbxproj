@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710D63C82B8767D800791C37 /* FetchImagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710D63C72B8767D800791C37 /* FetchImagesTests.swift */; };
 		71B8D68B2B86F3D8009074B3 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B8D68A2B86F3D8009074B3 /* Endpoint.swift */; };
 		71B8D68E2B86F442009074B3 /* FetchImagesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B8D68D2B86F442009074B3 /* FetchImagesEndpoint.swift */; };
 		71B8D6912B86F47B009074B3 /* FetchDetailsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B8D6902B86F47B009074B3 /* FetchDetailsEndpoint.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		710D63C72B8767D800791C37 /* FetchImagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImagesTests.swift; sourceTree = "<group>"; };
 		71B8D68A2B86F3D8009074B3 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		71B8D68D2B86F442009074B3 /* FetchImagesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchImagesEndpoint.swift; sourceTree = "<group>"; };
 		71B8D6902B86F47B009074B3 /* FetchDetailsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDetailsEndpoint.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				7DDF76EE2B49EBCE0050892E /* ContentViewModelTests.swift */,
 				7DDF76ED2B49EBCE0050892E /* DetailsViewModelTests.swift */,
+				710D63C72B8767D800791C37 /* FetchImagesTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				7DD784E02B2618A300D19CFB /* Error+Ext.swift in Sources */,
 				7DD784DF2B26188400D19CFB /* StubReader.swift in Sources */,
 				7D2087D72B4B409100ACE8A8 /* URL+Ext.swift in Sources */,
+				710D63C82B8767D800791C37 /* FetchImagesTests.swift in Sources */,
 				7DD784E52B261B0600D19CFB /* Logger+Ext.swift in Sources */,
 				7DDF76EF2B49EBCE0050892E /* DetailsViewModelTests.swift in Sources */,
 				7DD784E22B26190100D19CFB /* MockAPIService.swift in Sources */,
