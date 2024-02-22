@@ -5,10 +5,9 @@
 //  Created by Maysam Shahsavari on 2023-11-13.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol NetworkingService: AnyObject {
-    func fetchImages() -> AnyPublisher<SampleImagesResponse, Error>
-    func fetchImageDetails() -> AnyPublisher<ExtraDataResponse, Error>
+	func request<E>(_ endpoint: E) -> AnyPublisher<E.Response, Error> where E: Endpoint
 }

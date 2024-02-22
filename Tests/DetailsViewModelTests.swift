@@ -26,7 +26,7 @@ final class DetailsViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: false, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "extra-data-sample", isSuccessful: false, jsonDecoder: self.decoder)
         let sut = DetailsViewModel(imageModel: image, apiService: service)
         let fetchImagesExpectation = expectation(description: "Fetching image details")
         
@@ -48,7 +48,7 @@ final class DetailsViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: true, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "extra-data-sample", isSuccessful: true, jsonDecoder: self.decoder)
         let sut = DetailsViewModel(imageModel: image, apiService: service)
         let fetchImagesExpectation = expectation(description: "Fetching image details")
         
@@ -77,7 +77,7 @@ final class DetailsViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: true, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "extra-data-sample", isSuccessful: true, jsonDecoder: self.decoder)
         let sut = DetailsViewModel(imageModel: image, apiService: service)
         
         XCTAssertFalse(sut.isAppeared)
@@ -101,7 +101,7 @@ final class DetailsViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: false, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "extra-data-sample", isSuccessful: false, jsonDecoder: self.decoder)
         let sut = DetailsViewModel(imageModel: image, apiService: service)
         
         /// Missing ID
@@ -137,7 +137,7 @@ final class DetailsViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: false, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "extra-data-sample", isSuccessful: false, jsonDecoder: self.decoder)
         let sut = DetailsViewModel(imageModel: image, apiService: service)
         
         let imagesList = sut.createImagesDetailsList(response)
@@ -151,7 +151,7 @@ final class DetailsViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: false, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "extra-data-sample", isSuccessful: false, jsonDecoder: self.decoder)
         let sut = DetailsViewModel(imageModel: image, apiService: service)
         
         sut.findDataFor(id: nil)
@@ -167,7 +167,7 @@ final class DetailsViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: true, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "extra-data-sample", isSuccessful: true, jsonDecoder: self.decoder)
         let sut = DetailsViewModel(imageModel: image, apiService: service)
         let fetchImagesExpectation = expectation(description: "Fetching image details")
         

@@ -9,30 +9,10 @@ import Foundation
 import Combine
 
 final class APIService: NetworkingService {
-    func fetchImages() -> AnyPublisher<SampleImagesResponse, Error> {
-        guard let url = URL(string: RemoteAssets.images) else {
-            return Fail(error: NetworkingError.invalidURL)
-                .eraseToAnyPublisher()
-        }
-        return request(type: SampleImagesResponse.self, url: url)
-    }
-    
-    func fetchImageDetails() -> AnyPublisher<ExtraDataResponse, Error> {
-        guard let url = URL(string: RemoteAssets.extraData) else {
-            return Fail(error: NetworkingError.invalidURL)
-                .eraseToAnyPublisher()
-        }
-        return request(type: ExtraDataResponse.self, url: url)
-    }
-    
-    private func request<ResponseType>(type: ResponseType.Type, url: URL) -> AnyPublisher<ResponseType, Error> where ResponseType: Decodable {
-        let session = URLSession.shared
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.dateDecodingStrategy = .iso8601
-        return session.dataTaskPublisher(for: url)
-            .map(\.data)
-            .decode(type: ResponseType.self, decoder: decoder)
-            .eraseToAnyPublisher()
-    }    
+	func request<E>(_ endpoint: E) -> AnyPublisher<E.Response, Error>
+	where E: Endpoint {
+		URLSession.shared.dataTaskPublisher(for: endpoint.url)
+			.tryMap { try endpoint.response(data: $0.data) }
+			.eraseToAnyPublisher()
+	}
 }

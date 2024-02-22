@@ -31,7 +31,7 @@ final class ContentViewModel: ObservableObject {
     
     // MARK: - Private Methods
     private func fetch() {
-        apiService.fetchImages()
+        apiService.request(FetchImages())
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { [weak self] result in
                 if case let .failure(error) = result {

@@ -20,7 +20,7 @@ final class ContentViewModelTests: XCTestCase {
     }
     
     func testFetch() {
-        let service = MockAPIService(isSuccessful: true, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "images-sample", isSuccessful: true, jsonDecoder: self.decoder)
         let sut = ContentViewModel(apiService: service)
         let fetchImagesExpectation = expectation(description: "Fetching images")
         
@@ -36,7 +36,7 @@ final class ContentViewModelTests: XCTestCase {
     }
     
     func testViewDidAppear() {
-        let service = MockAPIService(isSuccessful: true, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "images-sample", isSuccessful: true, jsonDecoder: self.decoder)
         let sut = ContentViewModel(apiService: service)
     
         XCTAssertFalse(sut.isAppeared)
@@ -45,7 +45,7 @@ final class ContentViewModelTests: XCTestCase {
     }
     
     func testFetchError() {
-        let service = MockAPIService(isSuccessful: false, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "images-sample", isSuccessful: false, jsonDecoder: self.decoder)
         let sut = ContentViewModel(apiService: service)
         let fetchImagesExpectation = expectation(description: "Fetching images")
         
@@ -73,7 +73,7 @@ final class ContentViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: false, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "images-sample", isSuccessful: false, jsonDecoder: self.decoder)
         let sut = ContentViewModel(apiService: service)
 
         let imagesList = sut.createImagesList(response)
@@ -91,7 +91,7 @@ final class ContentViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: false, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "images-sample", isSuccessful: false, jsonDecoder: self.decoder)
         let sut = ContentViewModel(apiService: service)
 
         let imagesList = sut.createImagesList(response)
@@ -114,7 +114,7 @@ final class ContentViewModelTests: XCTestCase {
             return
         }
         
-        let service = MockAPIService(isSuccessful: false, jsonDecoder: self.decoder)
+		let service = MockAPIService(contentFile: "images-sample", isSuccessful: false, jsonDecoder: self.decoder)
         let sut = ContentViewModel(apiService: service)
 
         /// Bad URL

@@ -44,7 +44,7 @@ final class DetailsViewModel: ObservableObject {
     }
     
     private func fetch() {
-        apiService.fetchImageDetails()
+        apiService.request(FetchImageDetails())
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { [weak self] result in
                 if case let .failure(error) = result {

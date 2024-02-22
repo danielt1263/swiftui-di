@@ -5,65 +5,35 @@
 //  Created by Maysam Shahsavari on 2023-12-10.
 //
 
-import Foundation
 import Combine
+import Foundation
+@testable import SwiftUI_DI
 
 final class MockAPIService: NetworkingService {
-    private let contentFile: String
-    private let detailFile: String
-    private var isSuccessful: Bool
-    private let jsonDecoder: JSONDecoder
-    
-    init(contentFile: String = "images-sample", 
-         detailFile: String = "extra-data-sample",
-         isSuccessful: Bool = true,
-         jsonDecoder: JSONDecoder = JSONDecoder()) {
-        self.contentFile = contentFile
-        self.detailFile = detailFile
-        self.isSuccessful = isSuccessful
-        self.jsonDecoder = jsonDecoder
-    }
-    
-    func fetchImages() -> AnyPublisher<SampleImagesResponse, Error> {
-        guard isSuccessful else {
-            return Fail(outputType: SampleImagesResponse.self, failure: NetworkingError.testing)
-                .eraseToAnyPublisher()
-        }
-        
-        do {
-            if let data = try StubReader.readJson(self.contentFile) {
-                let jsonData = try jsonDecoder.decode(SampleImagesResponse.self, from: data)
-                return Result.Publisher(jsonData)
-                    .eraseToAnyPublisher()
-            } else {
-                return Fail(outputType: SampleImagesResponse.self, failure: FileError.badData)
-                    .eraseToAnyPublisher()
-            }
-        } catch {
-            return Fail(outputType: SampleImagesResponse.self, failure: error)
-                .eraseToAnyPublisher()
-        }
-    }
-    
-    func fetchImageDetails() -> AnyPublisher<ExtraDataResponse, Error> {
-        guard isSuccessful else {
-            return Fail(outputType: ExtraDataResponse.self, failure: NetworkingError.testing)
-                .eraseToAnyPublisher()
-        }
-        
-        do {
-            if let data = try StubReader.readJson(self.detailFile) {
-                let jsonData = try jsonDecoder.decode(ExtraDataResponse.self, from: data)
-                return Result.Publisher(jsonData)
-                    .eraseToAnyPublisher()
-            } else {
-                return Fail(outputType: ExtraDataResponse.self, failure: FileError.badData)
-                    .eraseToAnyPublisher()
-            }
-        } catch {
-            return Fail(outputType: ExtraDataResponse.self, failure: error)
-                .eraseToAnyPublisher()
-        }
-    }
-    
+	private let contentFile: String
+	private var isSuccessful: Bool
+	private let jsonDecoder: JSONDecoder
+
+	init(contentFile: String, isSuccessful: Bool, jsonDecoder: JSONDecoder) {
+		self.contentFile = contentFile
+		self.isSuccessful = isSuccessful
+		self.jsonDecoder = jsonDecoder
+	}
+
+	func request<E>(_ endpoint: E) -> AnyPublisher<E.Response, Error>
+		where E: Endpoint
+	{
+		guard isSuccessful else {
+			return Fail(error: NetworkingError.testing).eraseToAnyPublisher()
+		}
+		do {
+			guard let data = try StubReader.readJson(contentFile) else {
+				return Fail(error: FileError.badData).eraseToAnyPublisher()
+			}
+			return try Result.Publisher(endpoint.response(data: data)).eraseToAnyPublisher()
+		}
+		catch {
+			return Fail(error: error).eraseToAnyPublisher()
+		}
+	}
 }
